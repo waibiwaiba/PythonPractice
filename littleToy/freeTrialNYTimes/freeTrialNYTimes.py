@@ -71,22 +71,25 @@ driver.get(target_link)
 
 # 找到需要点击的按钮的 HTML 元素，并点击
 # 等待10s按钮元素出现
-wait = WebDriverWait(driver, 60)
-button = wait.until(EC.presence_of_element_located((By.XPATH, '//input[@class="giftRedeem__submitButton"]')))
-button = driver.find_element(By.XPATH, '//input[@class="giftRedeem__submitButton"]')
-time.sleep(1)
-button.click()
+# wait = WebDriverWait(driver, 60)
+# button = wait.until(EC.presence_of_element_located((By.XPATH, '//input[@class="giftRedeem__submitButton"]')))
+# button = driver.find_element(By.XPATH, '//input[@class="giftRedeem__submitButton"]')
+# input("请手动点击按钮，然后按下回车键以继续程序的执行...")
+# time.sleep(1)
+# button.click()
 
+input("按下回车以自动填写邮箱地址。")
 # 在注册页面中填写邮箱地址，并提交表单
 email_address = get_10min_mail()  # 设置邮箱地址
 wait = WebDriverWait(driver, 60)
 email_input = wait.until(EC.presence_of_element_located((By.ID, 'email')))
-time.sleep(0.7)
+# time.sleep(0.7)
 email_input.send_keys(email_address)
 submit_button = driver.find_element(By.XPATH, '//button[@type="submit"]')
-time.sleep(0.4)
-submit_button.click()
-
+# time.sleep(0.4)
+# input("请手动点击按钮，然后按下回车键以继续程序的执行...")
+# submit_button.click()
+input("按下回车以自动填写密码。")
 # 生成随机密码
 password_length = 10  # 设置密码长度
 password_characters = string.ascii_letters + string.digits  # 密码可选字符
@@ -96,38 +99,44 @@ print('设置的密码:', password)
 wait = WebDriverWait(driver, 60)
 password_field = wait.until(EC.presence_of_element_located((By.XPATH, '//input[@id="password"]')))
 # password_field = driver.find_element(By.XPATH, '//input[@id="password"]')
-time.sleep(1.7)
+# time.sleep(1.7)
 password_field.send_keys(password)
-time.sleep(0.4)
-create_account_button = driver.find_element(By.XPATH, '//button[@type="submit" and span[contains(text(),"Create Account")]]')
-time.sleep(0.7)
-create_account_button.click()
 
-# 点击“Continue”按钮
-wait = WebDriverWait(driver, 60)
-continue_button = wait.until(EC.presence_of_element_located((By.XPATH, '//a[@data-testid="get-started-btn"]')))
-time.sleep(0.5)
-continue_button.click()
 
-time.sleep(1.5)
+# time.sleep(0.4)
+# create_account_button = driver.find_element(By.XPATH, '//button[@type="submit" and span[contains(text(),"Create Account")]]')
+# time.sleep(0.7)
+# input("请手动点击按钮，然后按下回车键以继续程序的执行...")
+# create_account_button.click()
 
-wait = WebDriverWait(driver, 60)
-welcome_button = wait.until(EC.presence_of_element_located((By.XPATH, '//button[@data-testid="welcome-screen-button"]')))
-time.sleep(0.6)
-welcome_button.click()
+# # 点击“Continue”按钮
+# wait = WebDriverWait(driver, 60)
+# continue_button = wait.until(EC.presence_of_element_located((By.XPATH, '//a[@data-testid="get-started-btn"]')))
+# time.sleep(0.5)
 
-time.sleep(2)
+# # continue_button.click()
 
-news_ss_button = driver.find_element(By.XPATH, '//button[@data-testid="newsletter-signup-sheet-button"]')
-time.sleep(0.7)
-news_ss_button.click()
+# time.sleep(1.5)
 
-time.sleep(2.5)
+# wait = WebDriverWait(driver, 60)
+# welcome_button = wait.until(EC.presence_of_element_located((By.XPATH, '//button[@data-testid="welcome-screen-button"]')))
+# time.sleep(0.6)
 
-con_sms_button = driver.find_element(By.XPATH, '//button[@data-testid="continue-without-sms"]')
-con_sms_button.click()
+# # welcome_button.click()
+
+# time.sleep(2)
+
+# news_ss_button = driver.find_element(By.XPATH, '//button[@data-testid="newsletter-signup-sheet-button"]')
+# time.sleep(0.7)
+# news_ss_button.click()
+
+# time.sleep(2.5)
+
+# con_sms_button = driver.find_element(By.XPATH, '//button[@data-testid="continue-without-sms"]')
+# con_sms_button.click()
 
 # 关闭浏览器
+input("注册完成后，按下回车键以关闭浏览器。。。")
 driver.quit()
 
 print(email_address)
@@ -135,12 +144,9 @@ print(password)
 
 new_account_path = os.path.join(dir_path, 'new_account.txt')
 # 打开文件
-with open(new_account_path, 'w') as f:
+with open(new_account_path, 'a') as f:
     # 写入 email_address 和 password
+    current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    f.write(current_time + '\n')
     f.write(email_address + '\n')
     f.write(password + '\n\n')
-
-
-if __name__ == '__main__':
-    email = get_10min_mail()
-    
