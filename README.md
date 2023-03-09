@@ -1,1 +1,1 @@
-A private repository using for storing some python scripts solving some problems.
+A repository used to record my python learning process and some notes.
