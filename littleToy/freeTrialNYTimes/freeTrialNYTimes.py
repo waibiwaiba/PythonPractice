@@ -81,9 +81,10 @@ button.click()
 email_address = get_10min_mail()  # 设置邮箱地址
 wait = WebDriverWait(driver, 60)
 email_input = wait.until(EC.presence_of_element_located((By.ID, 'email')))
-
+time.sleep(0.7)
 email_input.send_keys(email_address)
 submit_button = driver.find_element(By.XPATH, '//button[@type="submit"]')
+time.sleep(0.4)
 submit_button.click()
 
 # 生成随机密码
@@ -95,9 +96,11 @@ print('设置的密码:', password)
 wait = WebDriverWait(driver, 60)
 password_field = wait.until(EC.presence_of_element_located((By.XPATH, '//input[@id="password"]')))
 # password_field = driver.find_element(By.XPATH, '//input[@id="password"]')
+time.sleep(1.7)
 password_field.send_keys(password)
 time.sleep(0.4)
 create_account_button = driver.find_element(By.XPATH, '//button[@type="submit" and span[contains(text(),"Create Account")]]')
+time.sleep(0.7)
 create_account_button.click()
 
 # 点击“Continue”按钮
@@ -116,6 +119,7 @@ welcome_button.click()
 time.sleep(2)
 
 news_ss_button = driver.find_element(By.XPATH, '//button[@data-testid="newsletter-signup-sheet-button"]')
+time.sleep(0.7)
 news_ss_button.click()
 
 time.sleep(2.5)
